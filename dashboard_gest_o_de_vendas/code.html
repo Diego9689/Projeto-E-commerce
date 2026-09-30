@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>CompFast Admin - Dashboard</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#0e0e0e",
+            "on-secondary-fixed-variant": "#802a00",
+            "surface-container-low": "#1c1b1b",
+            "surface-container": "#201f1f",
+            "surface-variant": "#353534",
+            "surface-container-high": "#2a2a2a",
+            "inverse-surface": "#e5e2e1",
+            "on-primary": "#502400",
+            "on-surface": "#e5e2e1",
+            "secondary": "#ffb59a",
+            "tertiary": "#c8c6c5",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "#311300",
+            "on-tertiary-container": "#353535",
+            "primary-fixed": "#ffdcc6",
+            "on-surface-variant": "#dec1af",
+            "tertiary-fixed-dim": "#c8c6c5",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#380d00",
+            "tertiary-container": "#9f9d9d",
+            "on-secondary-container": "#4f1700",
+            "inverse-on-surface": "#313030",
+            "error-container": "#93000a",
+            "outline": "#a68b7c",
+            "secondary-fixed": "#ffdbcf",
+            "on-background": "#e5e2e1",
+            "on-secondary": "#5b1b00",
+            "primary": "#ffb786",
+            "inverse-primary": "#964900",
+            "primary-container": "#f57c00",
+            "outline-variant": "#574235",
+            "secondary-container": "#f95e14",
+            "surface-bright": "#393939",
+            "surface-dim": "#131313",
+            "surface-tint": "#ffb786",
+            "background": "#131313",
+            "surface-container-highest": "#353534",
+            "on-tertiary-fixed": "#1b1c1c",
+            "surface": "#131313",
+            "secondary-fixed-dim": "#ffb59a",
+            "on-primary-container": "#572800",
+            "on-tertiary": "#303030",
+            "primary-fixed-dim": "#ffb786",
+            "on-primary-fixed-variant": "#723600",
+            "on-tertiary-fixed-variant": "#474746",
+            "tertiary-fixed": "#e4e2e1"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "0.75rem",
+            "space-xl": "1.5rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-xs": ["Plus Jakarta Sans"],
+            "kpi-number": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "22px", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "fontWeight": "800" }],
+            "label-xs": ["10px", { "lineHeight": "12px", "fontWeight": "700" }],
+            "kpi-number": ["26px", { "lineHeight": "30px", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #121212;
+      color: #e5e2e1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .obsidian-card {
+      background-color: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    .obsidian-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f57c00 0%, transparent 80%);
+      opacity: 0.85;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col justify-between">
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col pb-24">
+<!-- TopAppBar (from Shared Components JSON) -->
+<header class="flex justify-between items-center w-full px-margin h-14 bg-surface dark:bg-surface border-b border-surface-variant dark:border-surface-variant sticky top-0 z-50">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary text-headline-sm" data-icon="storefront">storefront</span>
+<div>
+<h1 class="text-headline-sm font-headline-sm text-on-surface dark:text-on-surface leading-none tracking-tight">CompFast Admin</h1>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00E676] animate-pulse"></span>
+<span class="text-label-xs font-label-xs text-tertiary">Online • Supabase sync</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button aria-label="Notificações" class="relative w-9 h-9 rounded-lg flex items-center justify-center bg-surface-container-high hover:bg-surface-container-highest active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span>
+</button>
+<div class="w-9 h-9 rounded-lg bg-surface-variant flex items-center justify-center font-label-md text-label-md text-primary font-bold border border-outline-variant">
+          CF
+        </div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin pt-space-lg flex flex-col gap-space-lg">
+<!-- Fast Time Filter Ribbon -->
+<section class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl border border-surface-variant">
+<button class="px-3.5 py-1.5 rounded-lg text-label-md font-label-md bg-primary-container text-on-primary-container transition-all shadow-sm">Hoje</button>
+<button class="px-3.5 py-1.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-all">7 dias</button>
+<button class="px-3.5 py-1.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-all">Este mês</button>
+</div>
+<div class="flex items-center gap-1 text-label-xs font-label-xs text-primary bg-surface-container px-2.5 py-1.5 rounded-lg border border-outline-variant/40">
+<span class="material-symbols-outlined text-sm" data-icon="sync">sync</span>
+<span>14:32</span>
+</div>
+</section>
+<!-- KPI Bento Grid (Obsidian Dark with High-Voltage Accent) -->
+<section class="grid grid-cols-2 gap-gutter">
+<!-- Faturamento do Dia (Span 2) -->
+<div class="col-span-2 obsidian-card rounded-xl p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="text-label-md font-label-md text-on-surface-variant">Faturamento do Dia</span>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#00E676]/10 text-[#00E676] text-label-xs font-label-xs">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="trending_up">trending_up</span>
+<span>+18.4%</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<span class="text-headline-lg font-headline-lg text-white tracking-tight">R$ 4.892,50</span>
+<span class="text-label-xs font-label-xs text-tertiary">vs. ontem R$ 4.130</span>
+</div>
+</div>
+<!-- Pedidos Hoje -->
+<div class="obsidian-card rounded-xl p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="text-label-md font-label-md text-on-surface-variant">Pedidos Hoje</span>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div class="mt-2">
+<span class="text-kpi-number font-kpi-number text-white">38</span>
+<p class="text-label-xs font-label-xs text-[#00E676] mt-0.5">+4 na última hora</p>
+</div>
+</div>
+<!-- Ticket Médio -->
+<div class="obsidian-card rounded-xl p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="text-label-md font-label-md text-on-surface-variant">Ticket Médio</span>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="payments">payments</span>
+</div>
+<div class="mt-2">
+<span class="text-kpi-number font-kpi-number text-white">R$ 128,75</span>
+<p class="text-label-xs font-label-xs text-tertiary mt-0.5">Estável (-0.8%)</p>
+</div>
+</div>
+<!-- Cupons Aplicados -->
+<div class="col-span-2 obsidian-card rounded-xl p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="confirmation_number">confirmation_number</span>
+</div>
+<div>
+<h2 class="text-label-lg font-label-lg text-on-surface leading-tight">Cupons Aplicados</h2>
+<p class="text-body-sm font-body-sm text-tertiary">Descontos ativos na loja</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm text-white">14</span>
+<span class="text-label-xs font-label-xs text-on-surface-variant block">vendas com cupom</span>
+</div>
+</div>
+</section>
+<!-- Compact Rhythm of Sales (Hourly Rhythm Sparkline / Chart) -->
+<section class="bg-surface-container-low rounded-xl p-space-md border border-surface-variant flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="speed">speed</span>
+<span class="text-label-md font-label-md text-on-surface">Ritmo de Vendas (Hoje por Hora)</span>
+</div>
+<span class="text-label-xs font-label-xs text-on-surface-variant">Pico: 12h - 14h</span>
+</div>
+<!-- Bar-chart representation of hours -->
+<div class="flex items-end justify-between gap-1.5 h-14 pt-3 px-1">
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-primary-container transition-all" style="height: 25%;"></div>
+<span class="text-[9px] font-label-xs text-tertiary">08h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-primary-container transition-all" style="height: 45%;"></div>
+<span class="text-[9px] font-label-xs text-tertiary">10h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-primary-container rounded-t shadow-[0_0_8px_rgba(245,124,0,0.5)]" style="height: 90%;"></div>
+<span class="text-[9px] font-label-xs text-primary font-bold">12h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-primary-container rounded-t" style="height: 100%;"></div>
+<span class="text-[9px] font-label-xs text-primary font-bold">13h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-primary-container transition-all" style="height: 70%;"></div>
+<span class="text-[9px] font-label-xs text-tertiary">14h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-primary-container transition-all" style="height: 55%;"></div>
+<span class="text-[9px] font-label-xs text-tertiary">15h</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full bg-surface-container-highest rounded-t border-t border-primary/50" style="height: 30%;"></div>
+<span class="text-[9px] font-label-xs text-tertiary">16h</span>
+</div>
+</div>
+</section>
+<!-- Merchant Fast Operations Notice (Regras de Negócio) -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0" data-icon="info">info</span>
+<div class="text-body-sm font-body-sm text-tertiary leading-snug">
+<strong class="text-on-surface font-label-md">Operação Expressa:</strong> Gestão direta de pedidos sem etapas de transportadora ou NFe. Confirmação instantânea de pagamento e separação ágil.
+        </div>
+</section>
+<!-- Últimos Pedidos -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Últimos Pedidos</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-xs font-label-xs">Recentes</span>
+</div>
+<button class="text-label-md font-label-md text-primary flex items-center hover:underline">
+            Ver todos
+            <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Orders List Items -->
+<div class="flex flex-col gap-2">
+<!-- Pedido #1084 -->
+<div class="bg-surface-container-low hover:bg-surface-container transition-colors rounded-xl p-space-md border border-surface-variant/80 flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-lg font-label-lg text-white">#1084</span>
+<span class="text-body-md font-body-md text-on-surface font-semibold">Lucas Silva</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary mt-0.5">2 itens • há 4 minutos</p>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-primary font-bold">R$ 289,90</span>
+<div class="mt-1 flex items-center justify-end gap-1 px-2 py-0.5 rounded bg-[#00E676]/15 text-[#00E676] text-label-xs font-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00E676]"></span>
+<span>Pix Aprovado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pedido #1083 -->
+<div class="bg-surface-container-low hover:bg-surface-container transition-colors rounded-xl p-space-md border border-surface-variant/80 flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-lg font-label-lg text-white">#1083</span>
+<span class="text-body-md font-body-md text-on-surface font-semibold">Juliana Rocha</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary mt-0.5">1 item • há 19 minutos</p>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-primary font-bold">R$ 89,00</span>
+<div class="mt-1 flex items-center justify-end gap-1 px-2 py-0.5 rounded bg-[#FFD600]/15 text-[#FFD600] text-label-xs font-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FFD600]"></span>
+<span>Aguardando Pagamento</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pedido #1082 -->
+<div class="bg-surface-container-low hover:bg-surface-container transition-colors rounded-xl p-space-md border border-surface-variant/80 flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-lg font-label-lg text-white">#1082</span>
+<span class="text-body-md font-body-md text-on-surface font-semibold">Marcos Costa</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary mt-0.5">3 itens • há 41 minutos</p>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-primary font-bold">R$ 412,00</span>
+<div class="mt-1 flex items-center justify-end gap-1 px-2 py-0.5 rounded bg-[#00E676]/15 text-[#00E676] text-label-xs font-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00E676]"></span>
+<span>Cartão Aprovado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pedido #1081 -->
+<div class="bg-surface-container-low hover:bg-surface-container transition-colors rounded-xl p-space-md border border-surface-variant/80 flex flex-col gap-2 opacity-75">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-lg font-label-lg text-white">#1081</span>
+<span class="text-body-md font-body-md text-on-surface font-semibold">Beatriz Mendes</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary mt-0.5">1 item • há 1 hora</p>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-tertiary">R$ 159,90</span>
+<div class="mt-1 flex items-center justify-end gap-1 px-2 py-0.5 rounded bg-surface-variant text-tertiary text-label-xs font-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>Cancelado</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (from Shared Components JSON with active: Dashboard) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin py-space-sm bg-surface dark:bg-surface border-t border-surface-variant dark:border-surface-variant">
+<!-- Destination 1: Dashboard (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-xs font-label-xs mt-1">Dashboard</span>
+</a>
+<!-- Destination 2: Catálogo -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-xs font-label-xs mt-1">Catálogo</span>
+</a>
+<!-- Destination 3: Marketing -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="loyalty">loyalty</span>
+<span class="text-label-xs font-label-xs mt-1">Marketing</span>
+</a>
+<!-- Destination 4: Clientes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="group">group</span>
+<span class="text-label-xs font-label-xs mt-1">Clientes</span>
+</a>
+</nav>
+</div>
+</body></html>
